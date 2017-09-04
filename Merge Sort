@@ -1,0 +1,48 @@
+def merge_sort(unsorted_list):
+    '''(list of objects) -> list of objects Return a copy of unsorted_list
+    sorted using the MergeSort algorithm
+    '''
+    #Base Case: an empty list is sorted, just return it
+    if(unsorted_list == []):
+        result = []
+    #Base Case 2: a list with a single element is sorted, just return it
+    #Question: How can we improve our base cases?
+    elif(len(unsorted_list) == 1):
+        result = unsorted_list
+    else:
+        midpoint = len(unsorted_list) //2
+        #split the list into two smaller lists
+        u1 = unsorted_list[:midpoint]
+        u2 = unsorted_list[midpoint:]
+        #recursively sort each list
+        s1 = merge_sort(u1)
+        s2 = merge_sort(u2)
+        #merge the two sorted lists
+        sorted_list = merge(s1,s2)
+        result = sorted_list
+    return result
+
+def merge(s1, s2):
+    '''(list of objects, list of objects) -> list of objets
+    Merge sorted lists s1 and s2 into a single sorted list and return it
+    '''
+    #index1 and index2 will hold our current place in s1 and s2 respectively
+    i1 = 0
+    i2 = 0
+    #loop through s1 and s2 comparing the current indicies, and moving
+    #the greater element into the sorted list
+    sorted_list = []
+    while(i1 < len(s1) and i2 < len(s2)):
+        if(s1[i1] < s2[i2]):
+            sorted_list.append(s1[i1])
+            i1 +=1
+        else:
+            sorted_list.append(s2[i2])
+            i2 +=1
+    #append the rest of whichever list has not been finished to the end of
+    #the sorted list
+    if(i1 < len(s1)):
+        sorted_list += s1[i1:]
+    else:
+        sorted_list += s2[i2:]
+    return sorted_list
