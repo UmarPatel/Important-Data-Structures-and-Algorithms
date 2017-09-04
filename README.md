@@ -1,1 +1,1 @@
-# Important-Data-Structures-and-Alogrithms
+# Important-Data-Structures-and-Algorithms
