@@ -1,0 +1,28 @@
+def quick_sort(unsorted_list):
+    '''(list of objects) -> list of objects
+    Return a copy of unsorted_list, sorted via the quicksort algorithm
+    '''
+    #Base Case: If we have an empty list, it must be sorted, so just
+    #return it
+    if(unsorted_list == []):
+        result = []
+    else:
+        #Pick a pivot, and split the list into three components
+        #those less than the pivot, those equal to the pivot
+        #and those greater than the pivot
+        pivot = random.choice(unsorted_list)
+        lt_list = []
+        gt_list = []
+        eq_list = []
+        for element in unsorted_list:
+            if(element < pivot):
+                lt_list.append(element)
+            elif(element > pivot):
+                gt_list.append(element)
+            else:
+                eq_list.append(element)
+        #RD: Sort the less than and greater than lists recursively
+        lt_list = quick_sort(lt_list)
+        gt_list = quick_sort(gt_list)
+        result = lt_list + eq_list + gt_list
+    return result
